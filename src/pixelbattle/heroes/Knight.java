@@ -11,7 +11,7 @@ import pixelbattle.engine.Sprite;
 import java.util.List;
 
 /** Лицар — міцний воїн ближнього бою. */
-public class Knight extends Hero {
+public final class Knight extends Hero {
 
     public Knight() {
         super("Лицар", 110, new Sprite("knight_m_idle_anim", 4, 4));

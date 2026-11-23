@@ -6,7 +6,7 @@ import pixelbattle.core.Target;
 import pixelbattle.engine.Sprite;
 
 /** Слиз — слабкий, але живучий. */
-public class Slime extends Enemy {
+public final class Slime extends Enemy {
 
     public Slime() {
         super("Слиз", 60, new Sprite("swampy_anim", 4, 6));

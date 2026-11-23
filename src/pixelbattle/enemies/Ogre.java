@@ -9,7 +9,7 @@ import pixelbattle.core.Ultimate;
 import pixelbattle.engine.Sprite;
 
 /** Огр — бос. Повільний, але дуже сильний. */
-public class Ogre extends Enemy {
+public final class Ogre extends Enemy {
 
     public Ogre() {
         super("Огр", 200, new Sprite("ogre_idle_anim", 4, 4));

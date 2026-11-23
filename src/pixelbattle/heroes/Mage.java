@@ -7,7 +7,7 @@ import pixelbattle.engine.Sprite;
 import pixelbattle.ultimates.Meteor;
 
 /** Маг — потужні заклинання та лікування. */
-public class Mage extends Hero {
+public final class Mage extends Hero {
 
     public Mage() {
         super("Маг", 70, new Sprite("wizzard_m_idle_anim", 4, 4));

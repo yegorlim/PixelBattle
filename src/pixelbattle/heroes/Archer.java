@@ -9,7 +9,7 @@ import pixelbattle.core.Ultimate;
 import pixelbattle.engine.Sprite;
 
 /** Лучниця — швидка й спритна. */
-public class Archer extends Hero {
+public final class Archer extends Hero {
 
     public Archer() {
         super("Лучниця", 80, new Sprite("elf_f_idle_anim", 4, 4));
