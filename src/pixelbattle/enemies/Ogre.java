@@ -1,8 +1,11 @@
 package pixelbattle.enemies;
 
 import pixelbattle.core.Enemy;
+import pixelbattle.core.Fighter;
 import pixelbattle.core.Skill;
 import pixelbattle.core.Target;
+import pixelbattle.core.Targets;
+import pixelbattle.core.Ultimate;
 import pixelbattle.engine.Sprite;
 
 /** Огр — бос. Повільний, але дуже сильний. */
@@ -18,13 +21,27 @@ public class Ogre extends Enemy {
                     + target.takeDamage(dmg) + " шкоди";
         }));
 
-        // TODO 10: ультимейт «Землетрус» — АНОНІМНИЙ КЛАС:
-        //   кожному живому герою 12 шкоди, а сам огр лікується на 20.
-        //   Увага: для огра вороги — це герої, тобто масив enemies у activate(...).
-        //   Огр використає ультимейт сам, щойно енергія заповниться.
+        // Частина 3: ультимейт «Землетрус» (анонімний клас)
+        setUltimate(new Ultimate() {
+            @Override public String getName() { return "Землетрус"; }
+
+            @Override public String getDescription() {
+                return "Кожному живому герою 12 шкоди, огр лікується на 20";
+            }
+
+            @Override public String activate(Fighter user, Fighter[] allies, Fighter[] enemies) {
+                int total = 0;
+                for (Fighter hero : Targets.alive(enemies)) {
+                    total += hero.takeDamage(12);
+                }
+                int healed = user.heal(20);
+                return user.getName() + " викликає Землетрус: " + total
+                        + " шкоди, лікується на " + healed;
+            }
+        });
     }
 
-    // ПРИКЛАД ПАСИВКИ: «Товста шкіра» — за один удар огр втрачає не більше 25 HP.
+    // Пасивка «Товста шкіра»: за один удар огр втрачає не більше 25 HP
     @Override
     protected int modifyIncomingDamage(int damage) {
         return Math.min(damage, 25);

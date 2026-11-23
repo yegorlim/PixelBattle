@@ -16,7 +16,7 @@ public class Slime extends Enemy {
                         + target.takeDamage(random(5, 9)) + " шкоди"));
     }
 
-    // Пасивка «Регенерація»: на початку ходу лікується на 6
+    // Частина 2: пасивка «Регенерація»
     @Override
     protected void onTurnStart() {
         heal(6);

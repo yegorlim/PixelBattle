@@ -1,18 +1,28 @@
 package pixelbattle.ultimates;
 
-/*
- * TODO 8: ультимейт «Метеорит» — ЗВИЧАЙНИЙ (іменований) клас:
- *
- *   public class Meteor implements Ultimate { ... }
- *
- *   - getName()        → "Метеорит"
- *   - getDescription() → короткий опис
- *   - activate(...)    → кожному живому ворогу Fighter.random(20, 30) шкоди;
- *                        поверніть рядок для журналу (наприклад, загальну шкоду).
- *
- *   Потрібні імпорти: pixelbattle.core.Fighter, pixelbattle.core.Ultimate.
- *   Зверніть увагу: Meteor НЕ є бійцем, тому random(...) тут викликається
- *   через ім'я класу: Fighter.random(20, 30).
- *
- *   Потім підключіть ультимейт у конструкторі Mage: setUltimate(new Meteor());
- */
+import pixelbattle.core.Fighter;
+import pixelbattle.core.Targets;
+import pixelbattle.core.Ultimate;
+
+import java.util.List;
+
+/** Ультимейт «Метеорит»: удар по всіх живих ворогах. */
+public class Meteor implements Ultimate {
+
+    @Override
+    public String getName() { return "Метеорит"; }
+
+    @Override
+    public String getDescription() { return "Кожному живому ворогу 20–30 шкоди"; }
+
+    @Override
+    public String activate(Fighter user, Fighter[] allies, Fighter[] enemies) {
+        List<Fighter> targets = Targets.alive(enemies);
+        int total = 0;
+        for (Fighter e : targets) {
+            total += e.takeDamage(Fighter.random(20, 30));
+        }
+        return user.getName() + " викликає Метеорит: " + total
+                + " шкоди (" + targets.size() + " цілей)";
+    }
+}
