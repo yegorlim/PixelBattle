@@ -15,15 +15,10 @@ public class Archer extends Hero {
                 user.getName() + " стріляє в " + target.getName() + ": "
                         + target.takeDamage(random(10, 16)) + " шкоди"));
 
-        // TODO 3: вміння «Подвійний постріл» (Target.ENEMY, перезарядка 1) ЛЯМБДОЮ:
-        //   два постріли по random(7, 11); у журнал — сума шкоди.
-
-        // TODO 9: ультимейт «Злива стріл» — АНОНІМНИЙ КЛАС з полем-лічильником:
-        //   кожен живий ворог отримує N стріл по random(4, 8) шкоди,
-        //   де N = 3 при першому використанні, 4 — при другому, 5 — при третьому...
-        //   (лічильник — поле всередині анонімного класу; знадобиться вкладений цикл).
+        addSkill(new Skill("Подвійний постріл", Target.ENEMY, 1, (user, target) -> {
+            int dmg = target.takeDamage(random(7, 11));
+            dmg += target.takeDamage(random(7, 11));
+            return user.getName() + " стріляє двічі в " + target.getName() + ": " + dmg + " шкоди";
+        }));
     }
-
-    // TODO 5: пасивка «Ухилення» — перевизначте modifyIncomingDamage:
-    //   з імовірністю 25% (chance(25)) шкода дорівнює 0, інакше — без змін.
 }
