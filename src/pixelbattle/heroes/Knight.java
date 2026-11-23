@@ -21,4 +21,10 @@ public class Knight extends Hero {
             return user.getName() + " стає в захист";
         }));
     }
+
+    // Пасивка «Важка броня»: шкода менша на 4, але не менше 0
+    @Override
+    protected int modifyIncomingDamage(int damage) {
+        return Math.max(0, damage - 4);
+    }
 }

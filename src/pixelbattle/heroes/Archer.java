@@ -21,4 +21,10 @@ public class Archer extends Hero {
             return user.getName() + " стріляє двічі в " + target.getName() + ": " + dmg + " шкоди";
         }));
     }
+
+    // Пасивка «Ухилення»: з шансом 25% шкода дорівнює 0
+    @Override
+    protected int modifyIncomingDamage(int damage) {
+        return chance(25) ? 0 : damage;
+    }
 }

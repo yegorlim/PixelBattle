@@ -16,6 +16,9 @@ public class Slime extends Enemy {
                         + target.takeDamage(random(5, 9)) + " шкоди"));
     }
 
-    // TODO 6: пасивка «Регенерація» — перевизначте onTurnStart():
-    //   на початку кожного свого ходу слиз лікується на 6 (heal(6)).
+    // Пасивка «Регенерація»: на початку ходу лікується на 6
+    @Override
+    protected void onTurnStart() {
+        heal(6);
+    }
 }
